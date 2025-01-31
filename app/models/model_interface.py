@@ -29,14 +29,14 @@ def get_access_token() -> str:
 
 
 
-def send_prompt(msg: str, access_token: str):
+def send_prompt(msg: str, sources: list, access_token: str) -> str:
     url = "https://gigachat.devices.sberbank.ru/api/v1/chat/completions"
 
     payload = json.dumps({
-        "model": "GigaChat-Lite",
+        "model": "GigaChat-Pro",
         "messages": [
             {"role": "system", "content": sys_promt},
-            {"role": "user", "content": msg}
+            {"role": "user", "content": f"Важно, давай ответ в виде : {sys_promt} Ответь на вопрос: {msg}\n\nДополнительные источники:\n" + "\n".join(sources)}
         ],
     })
     headers = {
