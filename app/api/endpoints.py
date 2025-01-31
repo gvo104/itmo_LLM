@@ -35,10 +35,16 @@ async def process_query(request: QueryRequest):
         response_data['reasoning'] += ' Ответ получен моделью GigaChat-Pro.'
         print(f"{response_data =}")
 
+        try:
+            answer=response_data.get("answer")
+            easoning=response_data.get("reasoning", "")
+        except:
+            answer = 1
+            easoning=response_data
         return QueryResponse(
             id=request.id,
-            answer=response_data.get("answer"),
-            reasoning=response_data.get("reasoning", ""),
+            answer=answer,
+            reasoning=easoning,
             sources=sources_list
         )
     except Exception as e:
