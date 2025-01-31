@@ -1,10 +1,9 @@
 import json
 import uuid
-
 import requests
 import os
 from dotenv import load_dotenv
-
+from config import sys_promt
 load_dotenv()
 
 CLIENT_ID = os.getenv("CLIENT_ID")
@@ -34,12 +33,10 @@ def send_prompt(msg: str, access_token: str):
     url = "https://gigachat.devices.sberbank.ru/api/v1/chat/completions"
 
     payload = json.dumps({
-        "model": "GigaChat-Pro",
+        "model": "GigaChat-Lite",
         "messages": [
-            {
-                "role": "user",
-                "content": msg,
-            }
+            {"role": "system", "content": sys_promt},
+            {"role": "user", "content": msg}
         ],
     })
     headers = {
