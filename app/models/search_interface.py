@@ -4,7 +4,7 @@ import feedparser
 
 load_dotenv()
 
-def search_itmo_news(query: str) -> list:
+async def search_itmo_news(query: str) -> list:
     """Ищет информацию по Университету ИТМО через DuckDuckGo."""
     with DDGS() as ddgs:
         results = ddgs.text(f"{query} site:itmo.ru", max_results=3)

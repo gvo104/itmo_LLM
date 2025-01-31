@@ -10,7 +10,7 @@ CLIENT_ID = os.getenv("CLIENT_ID")
 SECRET = os.getenv("CLIENT_SECRET")
 
 
-def get_access_token() -> str:
+async def get_access_token() -> str:
     url = "https://ngw.devices.sberbank.ru:9443/api/v2/oauth"
 
     payload={
